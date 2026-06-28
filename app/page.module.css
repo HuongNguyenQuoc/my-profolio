@@ -17,7 +17,8 @@
       transparent 12px
     ),
     radial-gradient(
-      circle at 17% 24% #ffffff 0 2px,
+      circle at 17% 24%,
+      #ffffff 0 2px,
       rgba(133, 255, 250, 0.75) 3px,
       transparent 10px
     ),
@@ -132,66 +133,132 @@
 }
 
 .eyebrow {
-  margin: 0 0 clamp(1.2rem, 2.5vh, 2rem);
+  margin: 0 0 clamp(1.8rem, 4vh, 3.1rem);
   font-size: clamp(2.5rem, 5vw, 4.2rem);
-  color: #192339;
-  font-weight: 350;
-  letter-spacing: -0.055em;
+  color: #2d416d;
+  font-weight: 620;
+  letter-spacing: -0.02em;
   line-height: 1;
-  animation: fadeUp 650ms ease both;
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.45),
+    0 0 34px rgba(69, 117, 255, 0.16);
+  animation: none;
+}
+
+.eyebrowLetter {
+  display: inline-block;
+  animation: letterIntro 1050ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--delay);
+  text-align: center;
+}
+
+.eyebrowLetterInner {
+  display: inline-block;
+  min-width: 0.26em;
+  padding-inline: 0.012em;
+  margin-inline: -0.006em;
+  transform-origin: center bottom;
+  transition:
+    color 180ms ease,
+    text-shadow 180ms ease;
+  will-change: transform;
+}
+
+.eyebrowLetter:hover .eyebrowLetterInner {
+  color: #126dff;
+  text-shadow:
+    0 0 12px rgba(0, 180, 255, 0.34),
+    0 0 22px rgba(168, 62, 255, 0.2);
 }
 
 .name {
-  position: relative;
+  display: inline-block;
   margin: 0;
-  color: rgba(239, 247, 255, 0.2);
-  font-size: clamp(6rem, 15vw, 11.5rem);
-  font-weight: 650;
-  letter-spacing: -0.06em;
-  line-height: 0.78;
+  color: rgba(235, 247, 255, 0.18);
+  font-size: clamp(6.4rem, 18.5vw, 12.4rem);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+  line-height: 0.84;
+  cursor: pointer;
   paint-order: stroke fill;
-  -webkit-text-stroke: clamp(2px, 0.22vw, 4px) #087bf1;
+  -webkit-text-stroke: clamp(2px, 0.26vw, 5px) #087bff;
   text-shadow:
-    -2px -2px 0 rgba(113, 231, 255, 0.75),
-    2px 2px 0 rgba(114, 46, 236, 0.9),
-    0 4px 0 rgba(14, 80, 207, 0.75),
-    0 0 16px rgba(52, 119, 255, 0.38),
-    0 0 30px rgba(166, 72, 255, 0.22);
-  animation: nameReveal 800ms 100ms ease both;
+    -3px -3px 0 rgba(122, 242, 255, 0.9),
+    3px 3px 0 rgba(168, 62, 255, 0.95),
+    0 5px 0 rgba(18, 88, 220, 0.78),
+    0 0 16px rgba(0, 180, 255, 0.85),
+    0 0 34px rgba(151, 65, 255, 0.65),
+    0 0 58px rgba(0, 132, 255, 0.35);
+  animation: none;
 }
 
-.name::after {
+.nameLetter {
+  display: inline-block;
+  animation: letterIntro 1250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--delay);
+  text-align: center;
+}
+
+.nameLetterInner {
+  position: relative;
+  display: inline-block;
+  min-width: 0.56em;
+  padding-inline: 0.008em;
+  margin-inline: -0.004em;
+  transform-origin: center bottom;
+  transition:
+    filter 180ms ease,
+    text-shadow 180ms ease;
+  will-change: transform;
+}
+
+.nameLetterInner::after {
   position: absolute;
   inset: 0;
   color: transparent;
-  content: attr(data-text);
-  opacity: 0.8;
-  transform: translateY(-1px);
+  content: attr(data-letter);
+  opacity: 0.95;
+  transform: translate(-1px, -2px);
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.92);
   pointer-events: none;
 }
 
+.nameLetter:hover .nameLetterInner {
+  filter: brightness(1.12);
+  text-shadow:
+    -4px -4px 0 rgba(122, 242, 255, 0.95),
+    4px 4px 0 rgba(192, 74, 255, 1),
+    0 6px 0 rgba(18, 88, 220, 0.85),
+    0 0 22px rgba(0, 210, 255, 0.95),
+    0 0 44px rgba(175, 65, 255, 0.85),
+    0 0 70px rgba(0, 132, 255, 0.45);
+}
+
+.letterHop {
+  animation: letterHop 680ms ease both;
+}
+
 .description {
   display: flex;
-  max-width: 54rem;
+  max-width: 43rem;
   flex-direction: column;
   margin:
-    clamp(2rem, 4vh, 3.5rem)
+    clamp(2.3rem, 4.8vh, 3.9rem)
     0 0;
-  color: rgba(21, 32, 57, 0.9);
-  font-size: clamp(1rem, 1.55vw, 1.3rem);
-  font-weight: 420;
-  line-height: 1.55;
-  animation: fadeUp 650ms 220ms ease both;
+  color: rgba(21, 32, 57, 0.62);
+  font-size: clamp(0.9rem, 1.18vw, 1.05rem);
+  font-weight: 380;
+  line-height: 1.5;
+  animation: fadeUpBlur 800ms 980ms ease both;
 }
 
 .actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(1.2rem, 2.5vw, 2.25rem);
+  gap: clamp(1.2rem, 2vw, 1.7rem);
   margin-top: clamp(2rem, 4vh, 3rem);
-  animation: fadeUp 650ms 320ms ease both;
+  animation: fadeUpBlur 800ms 1180ms ease both;
 }
 
 .contactButton {
@@ -201,9 +268,8 @@
   justify-content: center;
   gap: 1rem;
   min-width: 15rem;
-  margin-top: clamp(1.75rem, 4vh, 2.75rem);
-  padding: 1rem 1.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 1rem 1.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 999px;
   background: linear-gradient(100deg, #007bff, #4262ff, #b83af1);
   box-shadow:
@@ -211,7 +277,8 @@
     inset 0 1px rgba(255, 255, 255, 0.35);
   color: #ffffff;
   font-size: 1.05rem;
-  font-weight: 750;
+  font-weight: 800;
+  text-decoration: none;
   transition:
     transform 180ms ease,
     box-shadow 180ms ease,
@@ -224,6 +291,11 @@
   box-shadow:
     0 1.25rem 3rem rgba(65, 78, 231, 0.4),
     inset 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.buttonText {
+  display: inline-flex;
+  letter-spacing: 0.08em;
 }
 
 .contactButton:focus-visible,
@@ -259,13 +331,14 @@
   box-shadow:
     0 0.75rem 2rem rgba(63, 77, 156, 0.14),
     inset 0 1px rgba(255, 255, 255, 0.9);
-  
+  line-height: 1;
   transition:
     transform 180ms ease,
     box-shadow 180ms ease;
 }
 
 .socialLink svg {
+  display: block;
   width: 1.85rem;
   height: 1.85rem;
 }
@@ -274,7 +347,7 @@
   transform: translateY(-4px) scale(1.04);
   box-shadow:
     0 1rem 2.5rem rgba(63, 77, 156, 0.24),
-    inset 0 1 px rgba(255, 255, 255, 0.9);
+    inset 0 1px rgba(255, 255, 255, 0.9);
 }
 
 .socialLink[data-platform="github"] {
@@ -305,14 +378,54 @@
   }
 }
 
-@keyframes nameReveal {
+@keyframes fadeUpBlur {
   from {
     opacity: 0;
-    transform: translateY(1.5rem) scale(0.98);
+    filter: blur(14px);
+    transform: translateY(1.25rem);
   }
 
   to {
     opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes letterIntro {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(1.1em) scale(0.92) rotateX(65deg);
+  }
+
+  55% {
+    opacity: 1;
+    filter: blur(4px);
+    transform: translateY(-0.08em) scale(1.03) rotateX(0deg);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+}
+
+@keyframes letterHop {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  38% {
+    transform: translateY(-0.22em) scale(1.04);
+  }
+
+  68% {
+    transform: translateY(0.04em) scale(0.99);
+  }
+
+  100% {
     transform: translateY(0) scale(1);
   }
 }
@@ -323,7 +436,7 @@
   }
 
   .name {
-    font-size: clamp(5rem, 18vw, 9rem);
+    font-size: clamp(4.8rem, 16vw, 8.4rem);
   }
 
   .actions {
@@ -342,7 +455,7 @@
   }
 
   .name {
-    font-size: clamp(4.2rem, 21vw, 7rem);
+    font-size: clamp(3.8rem, 18vw, 6.2rem);
     line-height: 0.88;
   }
 
@@ -387,6 +500,10 @@
 @media (prefers-reduced-motion: reduce) {
   .eyebrow,
   .name,
+  .eyebrowLetter,
+  .eyebrowLetterInner,
+  .nameLetter,
+  .nameLetterInner,
   .description,
   .actions {
     animation: none;
@@ -394,7 +511,12 @@
 
   .contactButton,
   .buttonArrow,
+  .eyebrowLetter,
+  .eyebrowLetterInner,
+  .nameLetter,
+  .nameLetterInner,
   .socialLink {
     transition: none;
+    animation: none;
   }
 }

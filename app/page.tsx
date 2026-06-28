@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTiktok, FaYoutube } from "react-icons/fa6";
 
+import { AnimatedLetters } from "@/components/animated-letters";
 import { SiteHeader } from "@/components/site-header";
 import { siteContent } from "@/content/site-content";
 
@@ -15,6 +16,7 @@ const socialIcons = {
 
 export default function HomePage() {
   const { home, socialLinks } = siteContent;
+  const name = home.name.toUpperCase();
 
   return (
     <div className={styles.page}>
@@ -22,14 +24,26 @@ export default function HomePage() {
 
       <main className={styles.main}>
         <section className={styles.hero} aria-labelledby="home-heading">
-          <p className={styles.eyebrow}>{home.eyebrow}</p>
+          <p className={styles.eyebrow} aria-label={home.eyebrow}>
+            <AnimatedLetters
+              text={home.eyebrow}
+              letterClassName={styles.eyebrowLetter}
+              innerClassName={styles.eyebrowLetterInner}
+              animationClassName={styles.letterHop}
+              startDelayMs={120}
+              stepDelayMs={55}
+            />
+          </p>
 
-          <h1
-            id="home-heading"
-            className={styles.nameFrame}
-            data-text={home.name.toUpperCase()}
-          >
-            {home.name.toUpperCase()}
+          <h1 id="home-heading" className={styles.name} aria-label={name}>
+            <AnimatedLetters
+              text={name}
+              letterClassName={styles.nameLetter}
+              innerClassName={styles.nameLetterInner}
+              animationClassName={styles.letterHop}
+              startDelayMs={430}
+              stepDelayMs={65}
+            />
           </h1>
 
           <p className={styles.description}>
@@ -39,7 +53,7 @@ export default function HomePage() {
 
           <div className={styles.actions}>
             <Link href={home.contactHref} className={styles.contactButton}>
-              {home.contactLabel}
+              <span className={styles.buttonText}>{home.contactLabel}</span>
 
               <span className={styles.buttonArrow} aria-hidden="true">
                 ↗
